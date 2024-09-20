@@ -4,7 +4,7 @@
     entry: cue-auto-export
     language: golang
     files: .*\.cue$
-    types: [text]
+    types: [file]
     stages: [commit, push, manual]
     additional_dependencies:
         - cuelang.org/go/cmd/cue@latest
