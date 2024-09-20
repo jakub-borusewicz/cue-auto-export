@@ -1,7 +1,7 @@
 -   id: cue-auto-export
     name: export cue files
     description: Exports cue files to file with same location and stripped `.cue` extension. Infers `--out` format from last extension before `.cue`, for example `config.json.cue` will be exported to `confg.json` with `--out json`. If no such extension is found, defaults to `text`.
-    entry: cue export --outfile docker_compose/docker-compose-local.yaml --out yaml --force
+    entry: main
     language: golang
     files: .*\.cue$
     types: [text]
