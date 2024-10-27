@@ -21,6 +21,7 @@ var extension_out_map = map[string]string{
 
 func main() {
   files := os.Args[1:]
+  fmt.Printf("l1%v\n", "debug")
   for _, file := range files {
     fmt.Printf("l2%v\n", file)
     no_cue_filename := S.TrimSuffix(file, ".cue")
