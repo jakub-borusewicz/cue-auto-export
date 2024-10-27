@@ -29,7 +29,8 @@ func main() {
     out_format := extension_out_map[extension]
     command_string := "export"
     export_command, _ := cmd.New([]string{command_string, file, "--out", out_format, "--outfile", no_cue_filename, "--force"})
-    export_command.Execute()
+    res := export_command.Execute()
+    fmt.Printf("l3%v\n", res)
   }
 
 }
