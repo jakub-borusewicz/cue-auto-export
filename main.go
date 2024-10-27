@@ -21,16 +21,19 @@ var extension_out_map = map[string]string{
 
 func main() {
   files := os.Args[1:]
-  fmt.Printf("l1%v\n", "debug")
   for _, file := range files {
-    fmt.Printf("l2%v\n", file)
     no_cue_filename := S.TrimSuffix(file, ".cue")
     extension := path.Ext(no_cue_filename)
-    out_format := extension_out_map[extension]
-    command_string := "export"
-    export_command, _ := cmd.New([]string{command_string, file, "--out", out_format, "--outfile", no_cue_filename, "--force"})
-    res := export_command.Execute()
-    fmt.Printf("l3%v\n", res)
+    out_format, extension_mapped := extension_out_map[extension]
+    if !extension_mapped {
+       out_format = "text"
+    }
+    export_command, _ := cmd.New([]string{"export", file, "--out", out_format, "--outfile", no_cue_filename, "--force"})
+    result := export_command.Execute()
+    if result != nil {
+        fmt.Println("Error - could not export file", file)
+        panic(result)
+    }
   }
 
 }
