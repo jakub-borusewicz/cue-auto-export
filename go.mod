@@ -2,7 +2,7 @@ module github.com/jakub-borusewicz/cue-auto-export
 
 go 1.23.0
 
-require cuelang.org/go v0.10.0
+require cuelang.org/go v0.10.1
 
 require (
 	cuelabs.dev/go/oci/ociregistry v0.0.0-20240807094312-a32ad29eed79 // indirect
