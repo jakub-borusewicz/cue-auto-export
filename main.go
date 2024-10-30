@@ -21,19 +21,23 @@ var extension_out_map = map[string]string{
 
 func main() {
   files := os.Args[1:]
-  for _, file := range files {
-    no_cue_filename := S.TrimSuffix(file, ".cue")
-    extension := path.Ext(no_cue_filename)
-    out_format, extension_mapped := extension_out_map[extension]
-    if !extension_mapped {
-       out_format = "text"
-    }
-    export_command, _ := cmd.New([]string{"export", file, "--out", out_format, "--outfile", no_cue_filename, "--force"})
-    result := export_command.Execute()
-    if result != nil {
-        fmt.Println("Error - could not export file", file)
-        panic(result)
-    }
-  }
+  run_for_files(files)
+}
 
+func run_for_files(files []string) {
+    for _, file := range files {
+        fmt.Println("Exporting file", file)
+        no_cue_filename := S.TrimSuffix(file, ".cue")
+        extension := path.Ext(no_cue_filename)
+        out_format, extension_mapped := extension_out_map[extension]
+        if !extension_mapped {
+           out_format = "text"
+        }
+        export_command, _ := cmd.New([]string{"export", file, "--out", out_format, "--outfile", no_cue_filename, "--force"})
+        result := export_command.Execute()
+        if result != nil {
+            fmt.Println("Error - could not export file", file)
+            panic(result)
+        }
+      }
 }
